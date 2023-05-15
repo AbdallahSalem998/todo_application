@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_application/providers/my_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_application/shared/styles/app_colors.dart';
 import 'package:todo_application/shared/styles/my_theme.dart';
 
 class ShowLanguageSheetWidget extends StatelessWidget {
@@ -60,12 +61,12 @@ class ShowLanguageSheetWidget extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
-                          .copyWith(color:provider.themeMode==ThemeMode.light?Colors.black54:MyThemeData.yellowColor),
+                          .copyWith(color:provider.themeMode==ThemeMode.light?Colors.black54:lightColor),
                     ),
                     Spacer(),
                     Icon(
                       Icons.done,
-                      color:provider.themeMode==ThemeMode.light?Colors.black54:MyThemeData.yellowColor,//need if condition here
+                      color:provider.themeMode==ThemeMode.light?Colors.black54:lightColor,//need if condition here
                       size: 30,
                     )
                   ],

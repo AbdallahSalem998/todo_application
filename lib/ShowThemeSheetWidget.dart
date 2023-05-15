@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_application/providers/my_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_application/shared/styles/app_colors.dart';
 import 'package:todo_application/shared/styles/my_theme.dart';
 
 class ShowThemeSheetWidget extends StatelessWidget {
@@ -9,7 +10,7 @@ class ShowThemeSheetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var provider=Provider.of<MyProvider>(context);
     return Container(
-      color: provider.themeMode==ThemeMode.light?Colors.white:Theme.of(context).primaryColor,
+      color: provider.themeMode==ThemeMode.light?lightGreenColor:darkColor,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -58,13 +59,13 @@ class ShowThemeSheetWidget extends StatelessWidget {
                           .textTheme
                           .bodyMedium!
                           .copyWith(
-                          color:provider.themeMode==ThemeMode.light?Colors.black54:MyThemeData.yellowColor
+                          color:provider.themeMode==ThemeMode.light?Colors.black54:lightColor
                       ),
                     ),
                     Spacer(),
                     Icon(
                       Icons.done,
-                      color:provider.themeMode==ThemeMode.light?Colors.black54:MyThemeData.yellowColor,
+                      color:provider.themeMode==ThemeMode.light?Colors.black54:lightColor,
                       size: 30,
                     )
                   ],
