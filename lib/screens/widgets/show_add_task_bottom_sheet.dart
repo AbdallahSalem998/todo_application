@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo_application/firebase/firebase_functions.dart';
+import 'package:todo_application/models/task_model.dart';
 
 class ShowAddTaskBottomSheet extends StatefulWidget {
   @override
@@ -7,6 +9,10 @@ class ShowAddTaskBottomSheet extends StatefulWidget {
 
 class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
   var formKey = GlobalKey<FormState>();
+  var tasksTitleController = TextEditingController();
+  var tasksDescriptionController = TextEditingController();
+
+  DateTime selectedDate = DateUtils.dateOnly(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +39,7 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
                 height: 14,
               ),
               TextFormField(
+                controller: tasksTitleController,
                 autovalidateMode: AutovalidateMode.always,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -45,17 +52,18 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor)),
+                      BorderSide(color: Theme.of(context).primaryColor)),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor)),
+                      BorderSide(color: Theme.of(context).primaryColor)),
                 ),
               ),
               SizedBox(
                 height: 28,
               ),
               TextFormField(
+                controller: tasksDescriptionController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please Enter Task Description";
@@ -67,11 +75,11 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor)),
+                      BorderSide(color: Theme.of(context).primaryColor)),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor)),
+                      BorderSide(color: Theme.of(context).primaryColor)),
                 ),
               ),
               SizedBox(
@@ -98,7 +106,7 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "12/12/2022",
+                    selectedDate.toString().substring(0, 10),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -109,7 +117,13 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
               ElevatedButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    print("Route C8");
+                    TaskModel task = TaskModel(
+                        title: tasksTitleController.text,
+                        description: tasksDescriptionController.text,
+                        status: false,
+                        date: selectedDate.millisecondsSinceEpoch);
+                    FirebaseFunctions.addTaskToFirestore(task);
+                    Navigator.pop(context);
                   }
                 },
                 child: Text(
@@ -127,11 +141,16 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
     );
   }
 
-  void chooseTaskDate(BuildContext context) {
-    showDatePicker(
+  void chooseTaskDate(BuildContext context) async {
+    DateTime? chosenDate = await showDatePicker(
         context: context,
-        initialDate: DateTime.now(),
+        initialDate: selectedDate,
         firstDate: DateTime.now(),
         lastDate: DateTime.now().add(Duration(days: 365)));
+
+    if (chosenDate != null) {
+      selectedDate = DateUtils.dateOnly(chosenDate);
+      setState(() {});
+    }
   }
 }
