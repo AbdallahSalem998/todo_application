@@ -1,9 +1,10 @@
 {
-  "apptitle":"اسلامي",
-  "sura_names":"اسم السورة",
-  "ahadeth":"الاحاديث",
-  "quran":"قران",
-  "sebha":"سبحه",
-  "radio":"راديو",
-  "settings":"الاعدادات"
+  "apptitle":"مهام اليوم",
+  "taskEdit":"تعديل المهمه",
+  "taskTitle":"عنوان المهمه",
+  "taskDescription":"وصف المهمه",
+  "edit":"تعديل",
+  "addNewTask":"اضافه مهمه جديده",
+  "selectTime":"اختيار الوقت",
+  "addTask":"اضافه مهمه"
 }

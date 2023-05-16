@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_application/firebase/firebase_functions.dart';
-
 import '../models/task_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UpdateTask extends StatelessWidget {
   static const String routeName = "editScreen";
@@ -15,17 +15,17 @@ class UpdateTask extends StatelessWidget {
     descriptionController.text = task.description;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Task Edit"),
+        title: Text(AppLocalizations.of(context)!.taskEdit),
       ),
       body: Column(
         children: [
           TextFormField(
             controller: titleController,
-            decoration: InputDecoration(label: Text("task title")),
+            decoration: InputDecoration(label: Text(AppLocalizations.of(context)!.taskTitle)),
           ),
           TextFormField(
             controller: descriptionController,
-            decoration: InputDecoration(label: Text("task description")),
+            decoration: InputDecoration(label: Text(AppLocalizations.of(context)!.taskDescription)),
           ),
           ElevatedButton(
               onPressed: () {
@@ -34,7 +34,7 @@ class UpdateTask extends StatelessWidget {
                 FirebaseFunctions.updateTask(task.id, task);
                 Navigator.pop(context);
               },
-              child: Text("Edit"))
+              child: Text(AppLocalizations.of(context)!.edit))
         ],
       ),
     );

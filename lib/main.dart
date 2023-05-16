@@ -6,6 +6,8 @@ import 'package:todo_application/home_layout/home_layout.dart';
 import 'package:todo_application/providers/my_provider.dart';
 import 'package:todo_application/screens/update_task.dart';
 import 'package:todo_application/shared/styles/my_theme.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'firebase_options.dart';
 
@@ -28,6 +30,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var provider = Provider.of<MyProvider>(context);
     return MaterialApp(
+
+      localizationsDelegates: [
+        AppLocalizations.delegate, // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en'), // English
+        Locale('ar'), // arabic
+      ],
+
+      locale: Locale(provider.languageCode),
       themeMode: provider.themeMode,
       theme: MyThemeData.lightTheme,
       darkTheme: MyThemeData.darkTheme,

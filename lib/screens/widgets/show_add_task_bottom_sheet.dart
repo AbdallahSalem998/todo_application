@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_application/firebase/firebase_functions.dart';
 import 'package:todo_application/models/task_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShowAddTaskBottomSheet extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "Add new Task",
+                AppLocalizations.of(context)!.addNewTask,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 18,
@@ -48,7 +49,7 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  label: Text("Task title"),
+                  label: Text(AppLocalizations.of(context)!.taskTitle),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide:
@@ -71,7 +72,7 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  label: Text("Task Description"),
+                  label: Text(AppLocalizations.of(context)!.taskDescription),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide:
@@ -88,7 +89,7 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
               Container(
                 width: double.infinity,
                 child: Text(
-                  "Select Time",
+                  AppLocalizations.of(context)!.selectTime,
                   textAlign: TextAlign.start,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 18,
@@ -127,7 +128,7 @@ class _ShowAddTaskBottomSheetState extends State<ShowAddTaskBottomSheet> {
                   }
                 },
                 child: Text(
-                  "Add Task",
+                  AppLocalizations.of(context)!.addTask,
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!

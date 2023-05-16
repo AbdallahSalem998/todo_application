@@ -11,7 +11,7 @@ class ShowLanguageSheetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var provider = Provider.of<MyProvider>(context);
     return Container(
-      color: provider.themeMode==ThemeMode.light?Colors.white:Theme.of(context).primaryColor,
+      color: provider.themeMode==ThemeMode.light?Colors.white:darkColor,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
