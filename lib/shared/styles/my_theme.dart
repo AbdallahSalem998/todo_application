@@ -25,20 +25,20 @@ class MyThemeData {
         iconTheme: IconThemeData(color: Colors.black54, size: 30),
       ));
   static ThemeData darkTheme = ThemeData(
-      primaryColor: lightColor,
-      scaffoldBackgroundColor: lightGreenColor,
+      primaryColor: darkcolorT,
+      scaffoldBackgroundColor: darkColor,
       textTheme: TextTheme(
         bodyLarge: GoogleFonts.poppins(
-            fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+            fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF060E1E)),
         bodyMedium: GoogleFonts.poppins(
-            fontSize: 18, fontWeight: FontWeight.w600, color: lightColor),
+            fontSize: 18, fontWeight: FontWeight.w600, color: darkcolorT),
         bodySmall: GoogleFonts.roboto(
-            fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black54),
+            fontSize: 15, fontWeight: FontWeight.normal, color: yellowColor),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Colors.white,
-        unselectedItemColor: Colors.grey.shade400,
-        selectedItemColor: lightColor,
+        backgroundColor: Color(0xFF141922),
+        unselectedItemColor: Colors.white,
+        selectedItemColor: darkcolorT,
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: lightColor,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_application/providers/my_provider.dart';
 import 'package:todo_application/screens/settingsScreen.dart';
 import 'package:todo_application/screens/tasks.dart';
 import 'package:todo_application/screens/widgets/show_add_task_bottom_sheet.dart';
+import 'package:todo_application/shared/styles/app_colors.dart';
 
 class HomeLayout extends StatefulWidget {
   static const String routeName = "HomeLayout";
@@ -15,6 +18,7 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
@@ -33,7 +37,7 @@ class _HomeLayoutState extends State<HomeLayout> {
           child: const Icon(Icons.add)),
       bottomNavigationBar: BottomAppBar(
         notchMargin: 8,
-        color: Colors.white,
+        color: provider.themeMode==ThemeMode.light?Colors.white:Color(0xFF141922),
         shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
           backgroundColor: Colors.transparent,
