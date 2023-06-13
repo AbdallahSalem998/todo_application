@@ -1,6 +1,8 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_application/providers/my_provider.dart';
+import 'package:todo_application/screens/login.dart';
 import 'package:todo_application/screens/settingsScreen.dart';
 import 'package:todo_application/screens/tasks.dart';
 import 'package:todo_application/screens/widgets/show_add_task_bottom_sheet.dart';
@@ -23,6 +25,25 @@ class _HomeLayoutState extends State<HomeLayout> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                provider.signOut();
+                Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+              },
+              icon: Icon(
+                Icons.logout,
+                color: Colors.white,
+              )),
+          IconButton(
+              onPressed: () {
+                FirebaseCrashlytics.instance.crash();
+              },
+              icon: Icon(
+                Icons.add,
+                color: Colors.white,
+              ))
+        ],
         title: Text(
           AppLocalizations.of(context)!.apptitle,
           style: Theme.of(context).textTheme.bodyLarge,

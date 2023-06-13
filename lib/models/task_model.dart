@@ -3,6 +3,7 @@ class TaskModel {
   String title;
   String description;
   bool status;
+  String userId;
   int date;
 
   TaskModel(
@@ -10,6 +11,7 @@ class TaskModel {
       required this.title,
       required this.description,
       required this.status,
+      required this.userId,
       required this.date});
 
   TaskModel.fromJson(Map<String, dynamic> json)
@@ -18,6 +20,7 @@ class TaskModel {
           title: json['title'],
           description: json['description'],
           status: json['status'],
+          userId: json['userId'],
           date: json['date'],
         );
 
@@ -27,6 +30,7 @@ class TaskModel {
       "title": title,
       "description": description,
       "status": status,
+      "userId": userId,
       "date": date,
     };
   }
